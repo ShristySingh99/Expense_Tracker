@@ -247,20 +247,20 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        if (typeSelect.value === 'expense' && monthlyBudget <= 0) {
-            alert('Set a budget before adding an expense.');
-            return;
-        }
-
         if (typeSelect.value === 'expense' && amount > availableBalance) {
             alert(`This expense is greater than your available balance of ₹${availableBalance.toFixed(2)}.`);
             return;
         }
 
-        const remainingBudget = monthlyBudget - expenses;
-        if (typeSelect.value === 'expense' && amount > remainingBudget) {
-            alert(`This expense is greater than your remaining budget of ₹${remainingBudget.toFixed(2)}.`);
-            return;
+        if (typeSelect.value === 'expense') {
+            if (monthlyBudget <= 0) {
+                alert('Warning: You have not set a budget yet. Adding this expense anyway.');
+            } else {
+                const remainingBudget = monthlyBudget - expenses;
+                if (amount > remainingBudget) {
+                    alert(`Warning: This expense exceeds your remaining budget of ₹${remainingBudget.toFixed(2)}. Adding it anyway.`);
+                }
+            }
         }
 
         const newTransaction = {
