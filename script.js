@@ -248,8 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (typeSelect.value === 'expense' && amount > availableBalance) {
-            alert(`This expense is greater than your available balance of ₹${availableBalance.toFixed(2)}.`);
-            return;
+            alert(`Warning: This expense exceeds your available balance of ₹${availableBalance.toFixed(2)}. Adding it anyway.`);
         }
 
         if (typeSelect.value === 'expense') {
